@@ -31,7 +31,6 @@ Bedrock invoke model permission
 
 
 
-3. Deploy Code
 Upload the batch_inference_script.py to your Lambda function:
 bashzip -r lambda_package.zip batch_inference_script.py
 aws lambda update-function-code --function-name bedrock-batch-classifier --zip-file fileb://lambda_package.zip
@@ -43,7 +42,6 @@ DEFAULT_BATCH_SIZE: Number of texts to process in one batch (recommended: 1-3)
 DEFAULT_MAX_WORKERS: Maximum concurrent API calls (recommended: 5)
 DEFAULT_RATE_LIMIT: Maximum API calls per second (recommended: 5)
 
-5. Add Required Packages
 Create a Lambda layer with these dependencies:
 
 pandas
@@ -88,13 +86,11 @@ CSV files for each processed chunk
 A summary JSON file with job statistics
 ```bash
 
-Cost Management
 The script includes cost estimation based on token usage. Current pricing (subject to change):
 
 Input tokens: $3.60 per million tokens
 Output tokens: $18.00 per million tokens
 
-Monitoring
 Monitor batch jobs through:
 
 CloudWatch Logs for Lambda execution details
@@ -114,5 +110,3 @@ Memory errors: Reduce chunk size
 Timeout errors: Increase Lambda timeout setting
 Parse errors: Check for invalid text formats in your input data
 
-
-For more information about AWS Bedrock, visit the AWS Bedrock Documentation.

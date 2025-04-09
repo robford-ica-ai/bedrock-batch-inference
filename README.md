@@ -133,6 +133,4 @@ Monitor batch jobs through:
 - **Timeout errors:** Increase Lambda timeout setting
 - **Parse errors:** Check for invalid text formats in your input data
 
----
-
 For more information about AWS Bedrock, visit the [AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/).
