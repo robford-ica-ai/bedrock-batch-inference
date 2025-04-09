@@ -25,7 +25,7 @@ The solution performs automated classification of medical device incidents into 
 
 Upload your IMDRF reference data to an S3 bucket:
 
-```bash
+```shell
 aws s3 cp imdrf.csv s3://your-bucket/reference/imdrf.csv
 ```
 
@@ -41,7 +41,7 @@ aws s3 cp imdrf.csv s3://your-bucket/reference/imdrf.csv
 
 Upload the batch_inference_script.py to your Lambda function:
 
-```bash
+```shell
 zip -r lambda_package.zip batch_inference_script.py
 aws lambda update-function-code --function-name bedrock-batch-classifier --zip-file fileb://lambda_package.zip
 ```
@@ -78,26 +78,26 @@ Invoke the Lambda function with a payload like this:
 
 ```json
 {
-  "input_bucket": "your-data-bucket",
-  "input_key": "inputs/mdr_records.csv",
-  "output_bucket": "your-output-bucket",
-  "output_prefix": "outputs/job-20240409",
-  "model_id": "anthropic.claude-3-5-sonnet-20240620-v1:0",
-  "problem_type": "product",
-  "batch_size": 2,
-  "max_workers": 5,
-  "rate_limit": 5,
-  "imdrf_bucket": "your-reference-bucket",
-  "imdrf_key": "reference/imdrf.csv"
+    "input_bucket": "your-data-bucket",
+    "input_key": "inputs/mdr_records.csv",
+    "output_bucket": "your-output-bucket",
+    "output_prefix": "outputs/job-20240409",
+    "model_id": "anthropic.claude-3-5-sonnet-20240620-v1:0",
+    "problem_type": "product",
+    "batch_size": 2,
+    "max_workers": 5,
+    "rate_limit": 5,
+    "imdrf_bucket": "your-reference-bucket",
+    "imdrf_key": "reference/imdrf.csv"
 }
 ```
 
 You can trigger this via:
 
-```bash
+```shell
 aws lambda invoke --function-name bedrock-batch-classifier \
-  --payload file://job-config.json \
-  output.json
+    --payload file://job-config.json \
+    output.json
 ```
 
 ### Output Format
@@ -110,12 +110,14 @@ The solution produces:
 ## Cost Management
 
 The script includes cost estimation based on token usage. Current pricing (subject to change):
+
 - Input tokens: $3.60 per million tokens
 - Output tokens: $18.00 per million tokens
 
 ## Monitoring
 
 Monitor batch jobs through:
+
 1. CloudWatch Logs for Lambda execution details
 2. Job summary files in the output S3 location
 
@@ -128,9 +130,13 @@ Monitor batch jobs through:
 
 ## Troubleshooting
 
+Common issues and solutions:
+
 - **Throttling errors:** Reduce concurrent workers or rate limit
 - **Memory errors:** Reduce chunk size
 - **Timeout errors:** Increase Lambda timeout setting
 - **Parse errors:** Check for invalid text formats in your input data
+
+## Additional Resources
 
 For more information about AWS Bedrock, visit the [AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/).
