@@ -137,7 +137,7 @@ STEP_FUNCTION_DEFINITION = {
                 "TopicArn": "arn:aws:sns:us-east-1:123456789012:classification-complete",
                 "Message": "Medical device classification batch job complete. Product and patient results available in S3."
             },
-            "End": true
+            "End": true # type: ignore
         }
     }
 }
