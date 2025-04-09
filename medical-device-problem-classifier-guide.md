@@ -1,4 +1,4 @@
-# AWS Bedrock Batch Inference Implementation Guide
+# #**AWS** Bedrock Batch Inference Implementation Guide
 
 This guide outlines how to implement and deploy the batch inference script for processing large volumes of medical device incident texts through Claude models via AWS Bedrock.
 
